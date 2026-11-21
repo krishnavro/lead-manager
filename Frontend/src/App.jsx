@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import AddLeads from './pages/AddLeads';
 import ViewLeads from './pages/ViewLeads';
+import EditLead from './pages/EditLead';
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
         <Route path="/addleads" element={<ProtectedRoute><AddLeads/></ProtectedRoute>}/>
         <Route path="/viewleads" element={<ProtectedRoute><ViewLeads/></ProtectedRoute>}/>
+        <Route path="/edit-lead/:id" element={<ProtectedRoute><EditLead/></ProtectedRoute>}/>
       </Routes>
     </>
   )
