@@ -10,13 +10,13 @@ const LeadSchema = new mongoose.Schema({
          required: true,
          enum: ['New','Contacted','Qualified','Lost'],
           default: 'New'},
-    createdby:{
+    createdBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     }
 },{timestamps: true});
 
-const leadModel = mongoose.Model('Lead', LeadSchema);
+const leadModel = mongoose.model('Lead', LeadSchema);
 
-module.exports= {leadModel};
+module.exports= leadModel
