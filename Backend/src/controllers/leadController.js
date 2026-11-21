@@ -4,10 +4,6 @@ const Lead = require('../models/lead');
 async function addLeads(req,res){
     try{
         const user = req.user;
-        console.log("REQ.USER:", req.user);
-console.log("REQ.USER.ID:", req.user.id);
-console.log("USER:", user);
-console.log("USER.ID:", user.id);
 
         if(!user){
             return res.status(401).json({

@@ -2,7 +2,7 @@ const express = require('express');
 
 const {RegisterUser, LoginUser, LogoutUser, GetCurrentUser } = require('../controllers/authcontroller');
 const { authUser } = require('../middleware/authMiddleware');
-const {addLeads, getLeads } = require('../controllers/leadController');
+
 const router = express.Router();
 
 
@@ -16,7 +16,5 @@ router.get('/test-auth', authUser, (req,res)=>{
 });
 router.get('/me', authUser,GetCurrentUser);
 router.post('/logout',LogoutUser);
-router.post('/addleads', authUser,addLeads);
-router.get('/leads',authUser,getLeads);
 
 module.exports = router;

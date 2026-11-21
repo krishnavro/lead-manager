@@ -18,10 +18,19 @@ const Dashboard = () => {
     fetchUser()
   },[]);
   const navigate = useNavigate();
+
+  async function addLeads(){
+    navigate('/addleads');
+  }
+  async function viewLeads(){
+    navigate('/viewleads');
+  }
+
   async function handleLogout(){
     const UserLogout = await API.post('/auth/logout');
     navigate('/login');
   }
+
   return (
     <div>
       <h1>Lead Manageer Dashboard</h1>
@@ -32,6 +41,8 @@ const Dashboard = () => {
         <p>User Loading.......</p>
       )}
       <br/>
+      <button onClick={addLeads}>Add Leads</button><br/><br/>
+      <button onClick={viewLeads}>View Leads</button><br/><br/>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
