@@ -53,43 +53,45 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className='dashboard-container'>
       <h1>Lead Manageer Dashboard</h1>
 
       {user ? (
-        <h2>Welcome, {user.name}</h2>
+        <h2>Welcome, {user?.name}</h2>
       ): (
         <p>User Loading.......</p>
       )}
-      <div>
+      <div className='stats-contatiner'>
         <h2>Lead Summary</h2>
-        <div>
+        <div className='stat-card'>
           <h3>Total Leads</h3>
           <p>{totalLeads}</p>
         </div>
-        <div>
+        <div className='stat-card'>
           <h3>New</h3>
           <p>{newLeads}</p>
         </div>
-        <div>
+        <div className='stat-card'>
         <h3>Contacted</h3>
         <p>{contactedLeads}</p>
         </div>
 
-        <div>
+        <div className='stat-card'>
             <h3>Qualified</h3>
             <p>{qualifiedLeads}</p>
         </div>
 
-        <div>
+        <div className='stat-card'>
             <h3>Lost</h3>
             <p>{lostLeads}</p>
         </div>
       </div>
       <br/>
+      <div className='dashboard-actions'>
       <button onClick={addLeads}>Add Leads</button><br/><br/>
       <button onClick={viewLeads}>View Leads</button><br/><br/>
       <button onClick={handleLogout}>Logout</button>
+    </div>
     </div>
   );
 }

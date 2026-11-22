@@ -1,4 +1,4 @@
-import {Routes,Route} from 'react-router-dom';
+import {Routes,Route,Navigate} from 'react-router-dom';
 import './App.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -7,13 +7,16 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AddLeads from './pages/AddLeads';
 import ViewLeads from './pages/ViewLeads';
 import EditLead from './pages/EditLead';
+import Navbar from './components/Navbar';
 
 function App() {
   
 
   return (
     <>
+    <Navbar/>
       <Routes>
+        <Route path='/' element={<Navigate to='/register' replace />}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
