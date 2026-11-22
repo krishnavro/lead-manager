@@ -6,7 +6,7 @@ const leadRouter = require('./routes/leadRouter');
 const app = express();
 app.use(cors({
     origin: ['http://localhost:5173',
-        'https://lead-manager-green-ten.vercel.app/'
+        'https://lead-manager-green-ten.vercel.app'
     ],
     
     credentials: true
