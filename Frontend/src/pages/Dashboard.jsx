@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../services/api';
+import '../styles/dashboard.css'
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [leads, setLeads] = useState([]);
@@ -47,10 +48,7 @@ const Dashboard = () => {
     navigate('/viewleads');
   }
 
-  async function handleLogout(){
-    const UserLogout = await API.post('/auth/logout');
-    navigate('/login');
-  }
+
 
   return (
     <div className='dashboard-container'>
@@ -61,11 +59,13 @@ const Dashboard = () => {
       ): (
         <p>User Loading.......</p>
       )}
-      <div className='stats-contatiner'>
+      <div className='stats-container'>
         <h2>Lead Summary</h2>
+        <div className='total-card'>
         <div className='stat-card'>
           <h3>Total Leads</h3>
           <p>{totalLeads}</p>
+        </div>
         </div>
         <div className='stat-card'>
           <h3>New</h3>
@@ -85,12 +85,13 @@ const Dashboard = () => {
             <h3>Lost</h3>
             <p>{lostLeads}</p>
         </div>
-      </div>
+        </div>
+      
       <br/>
       <div className='dashboard-actions'>
       <button onClick={addLeads}>Add Leads</button><br/><br/>
       <button onClick={viewLeads}>View Leads</button><br/><br/>
-      <button onClick={handleLogout}>Logout</button>
+      
     </div>
     </div>
   );

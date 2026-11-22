@@ -1,3 +1,77 @@
 .dashboard-container {
     padding: 30px;
 }
+
+/* Total leads + status cards */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, 220px);
+    gap: 15px;
+    align-items: start;
+}
+
+/* Total Leads occupies both columns */
+.total-card {
+    grid-column: span 2;
+}
+
+/* Individual cards */
+.stat-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.stat-card h3 {
+    margin: 0 0 10px;
+    color: #666;
+    font-size: 15px;
+}
+
+.stat-card h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Dashboard action buttons */
+.dashboard-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.dashboard-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 350px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .total-card {
+        grid-column: span 1;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+}

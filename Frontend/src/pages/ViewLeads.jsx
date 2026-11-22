@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import API from '../services/api';
+import '../styles/leads.css'
 
 const ViewLeads = () => {
     const [leads, setLeads] = useState([]);
@@ -78,89 +79,106 @@ const ViewLeads = () => {
     }
 }
   return (
-    <>
+    <div className="view-leads-container">
         <h1>View Leads</h1>
-        <br/><br/>
-        <label>Search: </label>
-        <input type='search'
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}/><br/><br/>
 
-        <select
-            value={filterSearch}
-            onChange={(e) => setFilterSearch(e.target.value)}
-        >
-            <option value="All">All Status</option>
-            <option value="New">New </option>
-            <option value="Contacted">Contacted </option>
-            <option value="Qualified">Qualified </option>
-            <option value="Lost">Lost </option>
-        </select>
+        <div className="lead-controls">
+            <div className="search-box">
+                <label>Search:</label>
+                <input
+                    type="search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </div>
 
-        <br/><br/>
-        <select value={sortBy}
-            onChange={(e) => {setSortBy(e.target.value);
-                              setCurrentPage(1);
-            }}
-        >
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-            <option value="nameAZ">Name A-Z</option>
-            <option value="nameZA">Name Z-A</option>
-            
-        </select>
+            <select
+                value={filterSearch}
+                onChange={(e) => setFilterSearch(e.target.value)}
+            >
+                <option value="All">All Status</option>
+                <option value="New">New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Qualified">Qualified</option>
+                <option value="Lost">Lost</option>
+            </select>
 
-        <br/><br/>
-        <table border={1}>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Company</th>
-                    <th>Source</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {paginatedLeads.map((lead) =>(
-                    <tr key={lead._id}>
-                        <td>{lead.name}</td>
-                        <td>{lead.email}</td>
-                        <td>{lead.phone}</td>
-                        <td>{lead.company}</td>
-                        <td>{lead.source}</td>
-                        <td>{lead.status}</td>
-                        <td>
-                            <button onClick={()=> navigate(`/edit-lead/${lead._id}`)}
-                            >Edit</button>
-                            <button onClick={() => handleDelete(lead._id)}
-                            >Delete</button>
-                        </td>
+            <select
+                value={sortBy}
+                onChange={(e) => {
+                    setSortBy(e.target.value);
+                    setCurrentPage(1);
+                }}
+            >
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="nameAZ">Name A-Z</option>
+                <option value="nameZA">Name Z-A</option>
+            </select>
+            <button className='btn-style'
+                onClick={()=> navigate('/addleads')}
+            >Add Lead</button>
+        </div>
+        
+
+        <div className="leads-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Company</th>
+                        <th>Source</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
-                ))}
-            </tbody>
-        </table><br/><br/>
-        <div>
+                </thead>
+
+                <tbody>
+                    {paginatedLeads.map((lead) => (
+                        <tr key={lead._id}>
+                            <td>{lead.name}</td>
+                            <td>{lead.email}</td>
+                            <td>{lead.phone}</td>
+                            <td>{lead.company}</td>
+                            <td>{lead.source}</td>
+                            <td>{lead.status}</td>
+                            <td>
+                                <button onClick={() => navigate(`/edit-lead/${lead._id}`)}>
+                                    Edit
+                                </button>
+                                <button onClick={() => handleDelete(lead._id)}>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <div className="pagination">
             <button
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(currentPage - 1)}
             >
                 Previous
             </button>
+
             <span>
                 Page {currentPage} of {totalPages || 1}
             </span>
+
             <button
-                disabled={currentPage >=totalPages}
+                disabled={currentPage >= totalPages}
                 onClick={() => setCurrentPage(currentPage + 1)}
             >
                 Next
             </button>
         </div>
-    </>
-  )
+    </div>
+);
 }
 
 export default ViewLeads
